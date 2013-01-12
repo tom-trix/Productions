@@ -1,6 +1,7 @@
 package ru.tomtrix.productions;
 
 
+import com.sun.istack.internal.FinalArrayList;
 import javax.management.openmbean.KeyAlreadyExistsException;
 import java.util.*;
 import static java.lang.Math.min;
@@ -39,6 +40,11 @@ public class RuleSet {
     {
         if (min(index, newIndex) < 0 || max(index, newIndex) >= _rules.size()) throw new IllegalArgumentException("Wrong index");
         _rules.add(newIndex, _rules.remove(index));
+    }
+
+    public List<Rule> get_rules()
+    {
+        return new FinalArrayList<>(_rules);
     }
 
     public String toString()

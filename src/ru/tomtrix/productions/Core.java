@@ -12,7 +12,7 @@ public abstract class Core {
     private RuleSet _curRuleset;
     private RulesSelectionStrategies _ruleSelectionStrategy = RulesSelectionStrategies.FIRST;
 
-    public abstract String askForVariable();
+    public abstract String askForVariable(Variable variable);
 
     public void addVariable(Variable var)
     {
@@ -32,12 +32,12 @@ public abstract class Core {
             switch (var.get_type())
             {
                 case INFERRIBLE: inference(var);
-                case ASKABLE: setVariable(var, askForVariable());
+                case ASKABLE: setVariable(var, askForVariable(var));
                 case INFERRIBLY_ASKABLE:
                 {
                     inference(var);
                     if (!var.is_designated())
-                        setVariable(var, askForVariable());
+                        setVariable(var, askForVariable(var));
                 }
                 default: throw new NoSuchElementException("gdr");
             }

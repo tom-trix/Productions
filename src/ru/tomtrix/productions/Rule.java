@@ -3,6 +3,7 @@ package ru.tomtrix.productions;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * htdr
@@ -19,6 +20,17 @@ public class Rule implements ICommand
         if (name == null || condition == null || newValues == null || newValues.size() == 0 || name.trim().isEmpty()) throw new IllegalArgumentException("fsr");
         _name = name.trim();
         _condition = condition;
+        _newValues = newValues;
+        _coreRef = core;
+    }
+
+    public Rule(String name, Condition condition, Variable variable, String value, Core core)
+    {
+        if (name == null || condition == null || variable == null || value == null || (name.trim()+value.trim()).isEmpty()) throw new IllegalArgumentException("fsr");
+        _name = name.trim();
+        _condition = condition;
+        Map<Variable, String> newValues = new TreeMap<>();
+        newValues.put(variable,  value);
         _newValues = newValues;
         _coreRef = core;
     }

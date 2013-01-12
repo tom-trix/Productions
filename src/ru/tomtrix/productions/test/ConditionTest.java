@@ -15,7 +15,7 @@ public class ConditionTest
     {
         Core core = new Core() {
             @Override
-            public String askForVariable() {return null;}
+            public String askForVariable(Variable variable) {return null;}
         };
         Variable A = new Variable("A", VariableType.INFERRIBLE);
         Variable B = new Variable("B", VariableType.INFERRIBLE);
@@ -23,9 +23,9 @@ public class ConditionTest
         core.addVariable(A);
         core.addVariable(B);
         core.addVariable(C);
-        Operand a = new Operand(A, true, "Tom", core);
-        Operand b = new Operand(B, true, "Trix", core);
-        Operand c = new Operand(C, true, "Rem", core);
+        Operand a = new Operand(A, Inequality.EQUALS, "Tom", core);
+        Operand b = new Operand(B, Inequality.EQUALS, "Trix", core);
+        Operand c = new Operand(C, Inequality.EQUALS, "Rem", core);
 
         // A
         Condition cond = new Condition(a);

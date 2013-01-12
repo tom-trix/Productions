@@ -45,6 +45,11 @@ public class Variable implements Comparable<Variable> {
         return x instanceof Variable && _name.equals(((Variable) x)._name);
     }
 
+    public String toString()
+    {
+        return  _name;
+    }
+
     @Override
     public int compareTo(Variable o)
     {

@@ -17,10 +17,10 @@ public class RuleSetMover
     {
         Core core = new Core() {
             @Override
-            public String askForVariable() {return null;}
+            public String askForVariable(Variable variable) {return null;}
         };
         Variable A = new Variable("A", VariableType.INFERRIBLE);
-        Condition cond = new Condition(new Operand(A, true, "Tom", core));
+        Condition cond = new Condition(new Operand(A, Inequality.EQUALS, "Tom", core));
         Map<Variable, String> newValues = new TreeMap<>();
         newValues.put(A, "Trix");
         RuleSet rs = new RuleSet();

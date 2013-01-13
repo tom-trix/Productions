@@ -1,7 +1,7 @@
 package ru.tomtrix.productions;
 
 /**
- * gre
+ * Операции сравнения операндов
  */
 public enum Inequality
 {

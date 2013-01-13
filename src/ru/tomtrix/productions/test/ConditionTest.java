@@ -6,23 +6,22 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 /**
- * grd
+ * Класс тестирует правильность вычисления логического выражения посылки
  */
 public class ConditionTest
 {
     @Test
     public void testConditions()
     {
-        Core core = new Core() {
-            @Override
-            public String askForVariable(Variable variable) {return null;}
-        };
         Variable A = new Variable("A", VariableType.INFERRIBLE);
         Variable B = new Variable("B", VariableType.INFERRIBLE);
         Variable C = new Variable("C", VariableType.INFERRIBLE);
-        core.addVariable(A);
-        core.addVariable(B);
-        core.addVariable(C);
+
+        Core core = new Core(A, B, C) {
+            @Override
+            public String askForVariable(Variable variable) {return null;}
+        };
+
         Operand a = new Operand(A, Inequality.EQUALS, "Tom", core);
         Operand b = new Operand(B, Inequality.EQUALS, "Trix", core);
         Operand c = new Operand(C, Inequality.EQUALS, "Rem", core);

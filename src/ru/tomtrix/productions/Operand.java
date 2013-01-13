@@ -1,18 +1,29 @@
 package ru.tomtrix.productions;
 
 /**
- * hftd
+ * Класс реализует понятие "Операнд", используемого в посылке правила
  */
 public class Operand implements ICommand
 {
+    /** Переменная */
     private final Variable _variable;
+    /** Знак операции сравнения (==, !=, ...) */
     private final Inequality _equals;
+    /** Значение */
     private final String _value;
+    /** Ссылка на ядро */
     private final Core _coreRef;
 
+    /**
+     * Создаёт новый операнд
+     * @param variable переменная
+     * @param equals знак операции сравнения
+     * @param value значение
+     * @param core ссылка на ядро
+     */
     public Operand(Variable variable, Inequality equals, String value, Core core)
     {
-        if (variable == null || value == null || value.trim().isEmpty() || core == null) throw new IllegalArgumentException("Parameters can't be empty");
+        if (variable == null || value == null || value.trim().isEmpty() || core == null) throw new NullPointerException(Core.NullParameters);
         _variable = variable;
         _equals = equals;
         _value = value.trim();

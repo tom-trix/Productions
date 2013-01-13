@@ -1,7 +1,7 @@
 package ru.tomtrix.productions;
 
 /**
- * gser
+ * Стратегии выборки правил
  */
 public enum RulesSelectionStrategies
 {

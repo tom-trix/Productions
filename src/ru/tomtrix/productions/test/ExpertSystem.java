@@ -1,27 +1,25 @@
 package ru.tomtrix.productions.test;
 
-import org.junit.Test;
+import java.io.*;
 import ru.tomtrix.productions.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import static ru.tomtrix.productions.VariableType.*;
 import static ru.tomtrix.productions.Operation.*;
 import static ru.tomtrix.productions.Inequality.*;
+import static ru.tomtrix.productions.VariableType.*;
 
 /**
- * gdr
+ * Пример экспертной системы "К какой паре идти на занятия" (всего 13 правил)
  */
-public class ConsoleCore extends Core
+public class ExpertSystem
 {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    @Test
-    public void expertSystem() throws Exception {
-        Core core = new ConsoleCore();
-        RuleSet ruleset = new RuleSet();
-        Condition cond;
+    public static void main(String[] args) throws Exception
+    {
+        new ExpertSystem().consult();
+    }
 
+    public void consult() throws Exception
+    {
         Variable goTo = new Variable("Пойду к N-й паре", INFERRIBLE);
         Variable needTo = new Variable("Нужно к N-й паре", ASKABLE);
         Variable mood = new Variable("Настроение", INFERRIBLY_ASKABLE);
@@ -32,6 +30,20 @@ public class ConsoleCore extends Core
         Variable beer = new Variable("Бахнул пивка", ASKABLE);
         Variable haveSex = new Variable("Интим", ASKABLE);
         Variable zenit = new Variable("Зенит", ASKABLE);
+
+        Core core = new Core(goTo, needTo, mood, vivacity, fallAsleep, sleepDebt,weather, beer, haveSex, zenit) {
+            @Override
+            public String askForVariable(Variable variable) {
+                try
+                {
+                    System.out.println(variable + "?");
+                    return reader.readLine();
+                }
+                catch (IOException e) {return null;}
+            }
+        };
+        RuleSet ruleset = new RuleSet();
+        Condition cond;
 
         cond = new Condition(new Operand(needTo, EQUALS, "1", core));
         cond.addOperand(AND, new Operand(mood, EQUALS, "Хорошее", core));
@@ -83,16 +95,6 @@ public class ConsoleCore extends Core
         cond = new Condition(new Operand(zenit, NOT_EQUALS, "Выиграл", core));
         ruleset.addRule(new Rule("R13", cond, mood, "Плохое", core));
 
-        core.startConsulting(goTo, ruleset);
-    }
-
-    @Override
-    public String askForVariable(Variable variable) {
-        try
-        {
-            System.out.println(variable + "?");
-            return reader.readLine();
-        }
-        catch (IOException e) {return null;}
+        System.out.println(core.startConsulting(goTo, ruleset));
     }
 }

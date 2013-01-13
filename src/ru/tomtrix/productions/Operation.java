@@ -1,7 +1,7 @@
 package ru.tomtrix.productions;
 
 /**
- * rge
+ * Логические операции
  */
 public enum Operation
 {

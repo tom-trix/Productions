@@ -1,14 +1,13 @@
 package ru.tomtrix.productions.test;
 
 import org.junit.Test;
+import java.util.*;
 import ru.tomtrix.productions.*;
-import java.util.Map;
-import java.util.TreeMap;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
- * grd
+ * Класс тестирует правильность перемещения правил внутри Ruleset'a
  */
 public class RuleSetMover
 {

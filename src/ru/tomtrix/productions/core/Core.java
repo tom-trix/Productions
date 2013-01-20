@@ -1,6 +1,7 @@
-package ru.tomtrix.productions;
+package ru.tomtrix.productions.core;
 
 import java.util.*;
+import ru.tomtrix.productions.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -8,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * При логическом выводе переменные запрашиваются именно отсюда<br>
  * Класс реализует все методы за исключением <b>askForVariable</b> (запрос для запрашиваемой переменной)
  */
+@SuppressWarnings("unused")
 public abstract class Core {
     public static String NullParameters = "Parameters can't be NULL";
     public static String NoEnumConstant = "There is no such a constant";
@@ -24,6 +26,12 @@ public abstract class Core {
     private RulesSelectionStrategies _ruleSelectionStrategy = RulesSelectionStrategies.FIRST;
     /** Ссылка на текущий RuleSet */
     private RuleSet _curRuleset;
+
+    public void addVariable(Variable var)
+    {
+        if (var==null || _variables.containsKey(var)) throw new IllegalArgumentException("Wrong argument");
+        _variables.put(var, var);
+    }
 
     /**
      * Запрашивает переменную у пользователя

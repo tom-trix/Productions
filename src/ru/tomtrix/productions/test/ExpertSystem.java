@@ -1,7 +1,7 @@
 package ru.tomtrix.productions.test;
 
-import java.io.*;
 import ru.tomtrix.productions.*;
+import ru.tomtrix.productions.core.*;
 import static ru.tomtrix.productions.Operation.*;
 import static ru.tomtrix.productions.Inequality.*;
 import static ru.tomtrix.productions.VariableType.*;
@@ -11,8 +11,6 @@ import static ru.tomtrix.productions.VariableType.*;
  */
 public class ExpertSystem
 {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
     public static void main(String[] args) throws Exception
     {
         new ExpertSystem().consult();
@@ -31,17 +29,7 @@ public class ExpertSystem
         Variable haveSex = new Variable("Интим", ASKABLE);
         Variable zenit = new Variable("Зенит", ASKABLE);
 
-        Core core = new Core(goTo, needTo, mood, vivacity, fallAsleep, sleepDebt,weather, beer, haveSex, zenit) {
-            @Override
-            public String askForVariable(Variable variable) {
-                try
-                {
-                    System.out.println(variable + "?");
-                    return reader.readLine();
-                }
-                catch (IOException e) {return null;}
-            }
-        };
+        Core core = new ConsoleCore(goTo, needTo, mood, vivacity, fallAsleep, sleepDebt,weather, beer, haveSex, zenit);
         RuleSet ruleset = new RuleSet();
         Condition cond;
 
@@ -95,6 +83,7 @@ public class ExpertSystem
         cond = new Condition(new Operand(zenit, NOT_EQUALS, "Выиграл", core));
         ruleset.addRule(new Rule("R13", cond, mood, "Плохое", core));
 
+        haveSex.initialize("Да");
         System.out.println(core.startConsulting(goTo, ruleset));
     }
 }

@@ -3,6 +3,8 @@ package ru.tomtrix.productions.test;
 import org.junit.Test;
 import java.util.*;
 import ru.tomtrix.productions.*;
+import ru.tomtrix.productions.core.Core;
+
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 

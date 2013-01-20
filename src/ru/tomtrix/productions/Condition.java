@@ -1,5 +1,7 @@
 package ru.tomtrix.productions;
 
+import ru.tomtrix.productions.core.Core;
+
 import java.util.*;
 
 /**

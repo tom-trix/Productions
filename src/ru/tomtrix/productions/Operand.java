@@ -1,5 +1,7 @@
 package ru.tomtrix.productions;
 
+import ru.tomtrix.productions.core.Core;
+
 /**
  * Класс реализует понятие "Операнд", используемого в посылке правила
  */

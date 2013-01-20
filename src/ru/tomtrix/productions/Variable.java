@@ -1,5 +1,7 @@
 package ru.tomtrix.productions;
 
+import ru.tomtrix.productions.core.Core;
+
 /**
  * Класс реализует понятие "Переменная"
  */
@@ -10,6 +12,8 @@ public class Variable implements Comparable<Variable> {
     private final VariableType _type;
     /** Значение переменной */
     private String _value;
+    /** Показывает, инициализирована ли переменная перед логическим выводом */
+    private boolean _isInitialized = false;
 
     /**
      * Создаёт новую неозначенную переменную
@@ -28,7 +32,7 @@ public class Variable implements Comparable<Variable> {
      */
     public void reset()
     {
-        _value = null;
+        if (!_isInitialized) _value = null;
     }
 
     /**
@@ -53,6 +57,16 @@ public class Variable implements Comparable<Variable> {
      */
     public void set_value(String value)
     {
+        _value = value;
+    }
+
+    /**
+     * Устанавливает значение переменной в новое состояние
+     * @param value новое значение переменной
+     */
+    public void initialize(String value)
+    {
+        _isInitialized = true;
         _value = value;
     }
 

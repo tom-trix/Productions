@@ -57,7 +57,7 @@ public abstract class Core {
      */
     public void setVariable(Variable var, String value)
     {
-        if (var == null || value == null || value.trim().isEmpty() || !_variables.containsKey(var)) throw new NullPointerException(NullParameters);
+        if (var == null || value == null || value.trim().isEmpty() || !_variables.containsKey(var)) throw new NullPointerException(String.format("%s [var=%s; value=%s]", NullParameters, var, value));
         _variables.get(var).set_value(value.trim());
     }
 

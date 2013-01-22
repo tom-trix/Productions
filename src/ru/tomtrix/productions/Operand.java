@@ -38,4 +38,10 @@ public class Operand implements ICommand
         boolean f = _value.equals(_coreRef.getValue(_variable));
         return _equals==Inequality.EQUALS ? f : !f;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%s%s\"%s\"", _variable, _equals==Inequality.EQUALS ? "==" : "!=", _value);
+    }
 }

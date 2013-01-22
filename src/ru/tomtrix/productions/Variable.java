@@ -78,19 +78,21 @@ public class Variable implements Comparable<Variable> {
         return _value != null && !_value.trim().isEmpty();
     }
 
-    public boolean equals(Object x)
+    @Override
+    public int compareTo(Variable o)
     {
-        return x instanceof Variable && _name.equals(((Variable) x)._name);
+        return _name.compareTo(o._name);
     }
 
+    @Override
     public String toString()
     {
         return  _name;
     }
 
     @Override
-    public int compareTo(Variable o)
+    public boolean equals(Object x)
     {
-        return _name.compareTo(o._name);
+        return x instanceof Variable && _name.equals(((Variable) x)._name);
     }
 }

@@ -84,4 +84,13 @@ public class Rule implements ICommand
                 _coreRef.setVariable(e.getKey(), e.getValue());
         return result;
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (Entry<Variable, String> e : _newValues.entrySet())
+            sb.append(String.format("; %s = %s", e.getKey(), e.getValue()));
+        return String.format("%s: IF (%s) THEN {%s}", _name, _condition, sb.substring(2));
+    }
 }

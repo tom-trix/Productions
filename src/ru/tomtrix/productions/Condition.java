@@ -21,6 +21,7 @@ public class Condition implements ICommand
      */
     public Condition(Operand firstOperand)
     {
+        if (firstOperand == null) throw new NullPointerException(Core.NullParameters);
         _operands.add(firstOperand);
     }
 
@@ -66,5 +67,14 @@ public class Condition implements ICommand
             result = calculate(result, operation, nextOperand);
         }
         return result;
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder(_operands.get(0).toString());
+        for (int i=1; i<_operands.size(); i++)
+            sb.append(String.format(" %s %s", _operations.get(i-1), _operands.get(i)));
+        return sb.toString();
     }
 }
